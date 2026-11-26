@@ -1,0 +1,495 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.15in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dd}{\,\mathrm{d}}
+\DeclareMathOperator{\sgn}{sgn}
+
+\title{A proof of the Holevo--Utkin monotonicity hypothesis in dimension three}
+\date{November 2026}
+
+\begin{document}
+
+\begin{abstract}
+For unit vectors $x(\varphi)$ of the zero-sum plane in $\R^3$, Holevo and Utkin
+studied $M_\alpha(\varphi)=\sum_{j}|x_j(\varphi)|^{2\alpha}$ and stated, on numerical
+evidence, that $-M_\alpha'(\varphi)/\sin 6\varphi\ge C(\alpha)>0$ on $[0,\pi/6]$ for
+every $\alpha>2$. We prove this and determine the sharp constant $C(\alpha)$ in closed
+form. The key observation is that $-M_\alpha'(\varphi)/\sin 6\varphi$ equals
+$\tfrac{\alpha}{18}$ times a second-order divided difference of $t\mapsto t^{\alpha-1}$
+at the three numbers $x_j(\varphi)^2$, which are the roots of a cubic with a single
+moving coefficient. The same argument shows that $\sum_j g(x_j(\varphi)^2)$ is monotone
+on $[0,\pi/6]$ whenever $g'''$ has constant sign. This gives a unified proof of the
+three-dimensional case of the Holevo--Utkin inequality for every exponent.
+\end{abstract}
+
+\maketitle
+
+%======================================================================
+\section{Introduction}
+%======================================================================
+
+Let $L_d=\{x\in\R^d:\ x_1+\dots+x_d=0\}$. Holevo and Utkin~\cite{HU} conjectured the
+sharp inequalities
+\begin{align*}
+\|x\|_{2\alpha}&\le M(d,\alpha)^{1/(2\alpha)}\|x\|_2\qquad(\alpha\ge1),\\
+\|x\|_{2\alpha}&\ge M(d,\alpha)^{1/(2\alpha)}\|x\|_2\qquad(0<\alpha<1),
+\end{align*}
+for $x\in L_d$,
+with an explicit constant $M(d,\alpha)$. They proved the case $d=3$, and
+Zhang~\cite{Z} proved the remaining cases $d\ge4$.
+
+For $d=3$ the unit vectors of $L_3$ are
+\begin{equation}\label{eq:x}
+x_j(\varphi)=\sqrt{\tfrac23}\,\cos\Bigl(\varphi+\tfrac{2\pi(j-1)}{3}\Bigr),\qquad j=1,2,3,
+\end{equation}
+and the problem is to find the extreme values of
+\[
+M_\alpha(\varphi)=\sum_{j=1}^{3}|x_j(\varphi)|^{2\alpha}.
+\]
+The function $M_\alpha$ has period $\pi/3$ and is even about $\varphi=0$ and about
+$\varphi=\pi/6$, so it is enough to consider $\varphi\in[0,\pi/6]$. The endpoint
+$\varphi=0$ is the vector $(\sqrt{2/3},-1/\sqrt6,-1/\sqrt6)$, and $\varphi=\pi/6$ is
+$(1/\sqrt2,-1/\sqrt2,0)$.
+
+For $1<\alpha<2$ and for integer $\alpha$, Holevo and Utkin obtain the answer from the
+signs of the Fourier coefficients of $M_\alpha$ in $\cos 6k\varphi$. They remark that
+this approach does not extend simply to non-integer $\alpha>2$, and they record the
+following statement as a hypothesis supported by a numerical study~\cite[\S2]{HU}:
+\begin{equation}\tag{H}\label{eq:H}
+-\frac{M_\alpha'(\varphi)}{\sin 6\varphi}\ \ge\ C(\alpha)>0\qquad
+\text{for }\varphi\in[0,\pi/6]\text{ and every }\alpha>2,
+\end{equation}
+where at $\varphi\in\{0,\pi/6\}$ the left-hand side is understood as a limit.
+Hypothesis~\eqref{eq:H} implies that $M_\alpha$ is decreasing on $[0,\pi/6]$. They then
+prove the $d=3$ inequality for $\alpha>2$ by a different argument, and \eqref{eq:H}
+itself is left open. To our knowledge it has not been proved since; the paper~\cite{Z}
+deals with $d\ge4$.
+
+In this note we prove \eqref{eq:H} with the best possible constant
+(Theorem~\ref{thm:H}). The proof rests on an exact identity (Theorem~\ref{thm:identity})
+expressing $-M_\alpha'/\sin6\varphi$ as a divided difference. As a by-product we obtain
+the monotonicity of $M_\alpha$ on $[0,\pi/6]$ for every $\alpha>0$
+(Theorem~\ref{thm:mono}), which recovers the three-dimensional case of the
+Holevo--Utkin conjecture in a single argument.
+
+%======================================================================
+\section{Statement of results}
+%======================================================================
+
+Throughout we write
+\[
+y_j=y_j(\varphi):=x_j(\varphi)^2,\qquad f_\alpha(t):=t^{\alpha-1}\quad(t\ge0),
+\qquad
+\Phi_\alpha(\varphi):=-\frac{M_\alpha'(\varphi)}{\sin 6\varphi}\quad(0<\varphi<\pi/6).
+\]
+For pairwise distinct nodes $z_0,\dots,z_n$ the divided difference of a function $G$ is
+\begin{equation}\label{eq:dd}
+G[z_0,\dots,z_n]:=\sum_{j=0}^{n}\frac{G(z_j)}{\prod_{i\ne j}(z_j-z_i)} .
+\end{equation}
+
+\begin{theorem}[Identity]\label{thm:identity}
+Let $g\in C^1(0,\infty)$ and $S_g(\varphi):=\sum_{j=1}^3 g\bigl(y_j(\varphi)\bigr)$. For
+every $\varphi\in(0,\pi/6)$ the numbers $y_1,y_2,y_3$ are pairwise distinct and
+positive, and
+\[
+-\frac{S_g'(\varphi)}{\sin 6\varphi}=\frac1{18}\,g'[y_1,y_2,y_3].
+\]
+In particular, for every $\alpha>0$,
+\[
+\Phi_\alpha(\varphi)=\frac{\alpha}{18}\,f_\alpha[y_1,y_2,y_3],\qquad 0<\varphi<\pi/6.
+\]
+\end{theorem}
+
+\begin{theorem}[Monotonicity for every exponent]\label{thm:mono}
+Let $g\in C[0,\frac23]\cap C^3(0,\frac23)$. If $g'''>0$ on $(0,\frac23)$, then
+$\varphi\mapsto\sum_j g(y_j(\varphi))$ is strictly decreasing on $[0,\pi/6]$; if
+$g'''<0$, it is strictly increasing. Consequently:
+\begin{enumerate}
+\item $M_\alpha$ is strictly decreasing on $[0,\pi/6]$ for $\alpha\in(0,1)\cup(2,\infty)$;
+\item $M_\alpha$ is strictly increasing on $[0,\pi/6]$ for $\alpha\in(1,2)$;
+\item $M_\alpha$ is constant for $\alpha\in\{1,2\}$.
+\end{enumerate}
+Hence, for every $\alpha>0$, the extreme values of $\|x\|_{2\alpha}^{2\alpha}$ on the unit
+circle of $L_3$ are
+\[
+M_\alpha(0)=3^{-\alpha}\bigl(2^{\alpha}+2^{1-\alpha}\bigr)\qquad\text{and}\qquad
+M_\alpha(\pi/6)=2^{1-\alpha},
+\]
+and for $\alpha\notin\{1,2\}$ they are attained only at the orbits of these two points
+under permutations of coordinates and $x\mapsto -x$.
+\end{theorem}
+
+\begin{theorem}[Hypothesis \eqref{eq:H} with the sharp constant]\label{thm:H}
+Let $\alpha>2$. Then $\Phi_\alpha$ extends to a continuous, strictly positive function
+on $[0,\pi/6]$, whose endpoint values are
+\[
+\Phi_\alpha(0)=\frac{\alpha}{9}\Bigl[\,2\bigl(\tfrac23\bigr)^{\alpha-1}
+-\bigl(\alpha-\tfrac23\bigr)6^{\,2-\alpha}\Bigr],\qquad
+\Phi_\alpha(\tfrac{\pi}{6})=\frac{\alpha(\alpha-2)}{18}\,2^{\,3-\alpha}.
+\]
+Moreover $\Phi_\alpha$ is strictly increasing on $[0,\pi/6]$ if
+$(\alpha-3)(\alpha-4)(\alpha-5)<0$, strictly decreasing if
+$(\alpha-3)(\alpha-4)(\alpha-5)>0$, and constant, equal to $\frac16,\frac29,\frac5{24}$,
+for $\alpha=3,4,5$ respectively. Consequently \eqref{eq:H} holds, and the best constant is
+\[
+C(\alpha)=\min_{[0,\pi/6]}\Phi_\alpha=
+\begin{cases}
+\Phi_\alpha(0), & 2<\alpha<3\ \text{or}\ 4<\alpha<5,\\[1mm]
+\Phi_\alpha(\pi/6), & 3\le\alpha\le4\ \text{or}\ \alpha\ge5.
+\end{cases}
+\]
+Finally, $C(\alpha)=\frac29\bigl(\frac83\ln2-1\bigr)(\alpha-2)+O\bigl((\alpha-2)^2\bigr)$
+as $\alpha\to2^+$.
+\end{theorem}
+
+Table~\ref{tab:C} lists a few values; they agree with a direct numerical evaluation of
+$-M_\alpha'/\sin6\varphi$ (Section~\ref{sec:numerics}).
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{c|ccccccccc}
+$\alpha$ & 2.5 & 3 & 3.5 & 4 & 4.5 & 5 & 5.5 & 8 & 15\\\hline
+$C(\alpha)$ & 0.094502 & $\frac16$ & 0.206239 & $\frac29$ & 0.220189 & $\frac5{24}$ &
+0.189053 & $\frac1{12}$ & 0.0026449\\
+attained at & $0$ & all & $\frac\pi6$ & all & $0$ & all & $\frac\pi6$ & $\frac\pi6$ &
+$\frac\pi6$
+\end{tabular}
+\caption{The sharp constant $C(\alpha)$ and where it is attained.}
+\label{tab:C}
+\end{table}
+
+%======================================================================
+\section{Divided differences}
+%======================================================================
+
+We only need two standard facts, see e.g.~\cite{dB}; we include short proofs for
+completeness.
+
+\begin{lemma}\label{lem:lagrange}
+Let $z_0,\dots,z_n$ be pairwise distinct and $Q(t)=\prod_{i=0}^n(t-z_i)$. Then
+$Q'(z_j)=\prod_{i\ne j}(z_j-z_i)$, so that
+$G[z_0,\dots,z_n]=\sum_j G(z_j)/Q'(z_j)$. Moreover $G[z_0,\dots,z_n]$ is the leading
+coefficient (the coefficient of $t^n$) of the unique polynomial $p$ of degree at most $n$
+with $p(z_j)=G(z_j)$ for all $j$.
+\end{lemma}
+
+\begin{proof}
+The first claim follows from the product rule. The interpolating polynomial is
+$p(t)=\sum_j G(z_j)\prod_{i\ne j}\frac{t-z_i}{z_j-z_i}$, whose coefficient of $t^n$ is
+$\sum_j G(z_j)/\prod_{i\ne j}(z_j-z_i)$.
+\end{proof}
+
+\begin{lemma}[Mean value theorem for divided differences]\label{lem:mvt}
+Let $I$ be an open interval, $G\in C^n(I)$, and let $z_0,\dots,z_n\in I$ be pairwise
+distinct. Then there is $\xi$ strictly between $\min_j z_j$ and $\max_j z_j$ with
+\[
+G[z_0,\dots,z_n]=\frac{G^{(n)}(\xi)}{n!}.
+\]
+In particular, if $G^{(n)}>0$ on $I$ then $G[z_0,\dots,z_n]>0$, and if $G^{(n)}\equiv0$
+on $I$ then $G[z_0,\dots,z_n]=0$.
+\end{lemma}
+
+\begin{proof}
+Let $p$ be the interpolating polynomial of Lemma~\ref{lem:lagrange}. The function
+$G-p$ vanishes at the $n+1$ distinct points $z_j$. Applying Rolle's theorem $n$ times,
+$(G-p)^{(n)}$ vanishes at some $\xi$ strictly between $\min z_j$ and $\max z_j$. Since
+$p^{(n)}=n!\,G[z_0,\dots,z_n]$, the claim follows.
+\end{proof}
+
+%======================================================================
+\section{The three squares as roots of a cubic}
+%======================================================================
+
+Write $\theta=2\varphi$. Since $\cos^2 u=\frac12(1+\cos 2u)$,
+\begin{equation}\label{eq:y}
+y_1=\tfrac13(1+\cos\theta),\qquad
+y_2=\tfrac13\bigl(1+\cos(\theta+\tfrac{4\pi}{3})\bigr),\qquad
+y_3=\tfrac13\bigl(1+\cos(\theta+\tfrac{2\pi}{3})\bigr),
+\end{equation}
+where for $y_3$ we used $\cos(\theta+\frac{8\pi}3)=\cos(\theta+\frac{2\pi}3)$.
+
+\begin{lemma}\label{lem:cubic}
+For every $\varphi$,
+\[
+y_1+y_2+y_3=1,\qquad y_1y_2+y_1y_3+y_2y_3=\tfrac14,\qquad
+y_1y_2y_3=e(\varphi):=\frac{1+\cos 6\varphi}{108}.
+\]
+Equivalently, $y_1,y_2,y_3$ are the three roots of
+\[
+P_{e}(t)=h(t)-e,\qquad h(t):=t^3-t^2+\tfrac14 t=t\bigl(t-\tfrac12\bigr)^2,
+\qquad e=e(\varphi).
+\]
+\end{lemma}
+
+\begin{proof}
+Put $c_k=\cos(\theta+\frac{2\pi k}{3})$, $k=0,1,2$, so that $\{3y_j-1\}=\{c_0,c_1,c_2\}$.
+From $\cos3u=4\cos^3u-3\cos u$, the $c_k$ are the three roots of
+$4c^3-3c-\cos3\theta$ (they are distinct unless $\cos 3\theta=\pm1$, and the identity
+below extends to those cases by continuity). Hence
+$\prod_k(c-c_k)=c^3-\frac34c-\frac14\cos3\theta$, that is
+\[
+\textstyle\sum_k c_k=0,\qquad\sum_{k<l}c_kc_l=-\frac34,\qquad
+\prod_k c_k=\frac14\cos3\theta .
+\]
+With $y=\frac13(1+c)$ this gives $\sum y_j=1$,
+$\sum_{i<j}y_iy_j=\frac19\bigl(3+2\sum c_k+\sum_{k<l}c_kc_l\bigr)=\frac19\bigl(3-\frac34\bigr)=\frac14$, and
+\[
+27\,y_1y_2y_3=\prod_k(1+c_k)=1+\sum c_k+\sum_{k<l}c_kc_l+\prod c_k
+=\tfrac14\bigl(1+\cos 3\theta\bigr).
+\]
+Since $3\theta=6\varphi$, $y_1y_2y_3=(1+\cos6\varphi)/108$.
+\end{proof}
+
+\begin{lemma}\label{lem:roots}
+On $[0,\pi/6]$ the function $e$ decreases strictly from $\frac1{54}$ to $0$, and
+$e'(\varphi)=-\frac1{18}\sin 6\varphi$. For $\varphi\in[0,\pi/6]$,
+\[
+0\le y_3\le\tfrac16\le y_2\le\tfrac12\le y_1\le\tfrac23,
+\]
+with all inequalities strict for $\varphi\in(0,\pi/6)$. At $\varphi=0$,
+$(y_1,y_2,y_3)=(\frac23,\frac16,\frac16)$; at $\varphi=\pi/6$,
+$(y_1,y_2,y_3)=(\frac12,\frac12,0)$. In particular, for $0<\varphi<\pi/6$ the $y_j$ are
+pairwise distinct and positive, and $h'(y_j)=\prod_{i\ne j}(y_j-y_i)\ne0$.
+\end{lemma}
+
+\begin{proof}
+The statements on $e$ are immediate from Lemma~\ref{lem:cubic}. For
+$\theta=2\varphi\in[0,\pi/3]$ we have $\theta\in[0,\frac\pi3]$,
+$\theta+\frac{4\pi}3\in[\frac{4\pi}3,\frac{5\pi}3]$ and
+$\theta+\frac{2\pi}3\in[\frac{2\pi}3,\pi]$, on which $\cos$ takes values in
+$[\frac12,1]$, $[-\frac12,\frac12]$ and $[-1,-\frac12]$ respectively, with values in the
+open intervals for interior $\theta$. Inserting into \eqref{eq:y} gives the bounds and the
+endpoint values. Finally $P_e(t)=\prod_i(t-y_i)$ by Lemma~\ref{lem:cubic}, and
+$P_e'=h'$, so $h'(y_j)=\prod_{i\ne j}(y_j-y_i)$.
+\end{proof}
+
+%======================================================================
+\section{\texorpdfstring{Proof of Theorem~\ref{thm:identity}}{Proof of Theorem}}
+%======================================================================
+
+Fix $\varphi_0\in(0,\pi/6)$. By Lemma~\ref{lem:cubic}, $h(y_j(\varphi))=e(\varphi)$ for
+all $\varphi$ and each $j$. Both sides are smooth in $\varphi$; differentiating at
+$\varphi_0$ and using Lemma~\ref{lem:roots},
+\[
+h'(y_j)\,y_j'(\varphi_0)=e'(\varphi_0)=-\tfrac1{18}\sin6\varphi_0,\qquad\text{so}\qquad
+y_j'(\varphi_0)=-\frac{\sin 6\varphi_0}{18}\cdot\frac1{\prod_{i\ne j}(y_j-y_i)} .
+\]
+Since the $y_j(\varphi_0)$ are positive and $g\in C^1(0,\infty)$, the chain rule gives
+\[
+S_g'(\varphi_0)=\sum_j g'(y_j)\,y_j'(\varphi_0)
+=-\frac{\sin6\varphi_0}{18}\sum_j\frac{g'(y_j)}{\prod_{i\ne j}(y_j-y_i)}
+=-\frac{\sin6\varphi_0}{18}\,g'[y_1,y_2,y_3].
+\]
+For $g(t)=t^\alpha$ we have $S_g=M_\alpha$ (because $|x_j|^{2\alpha}=y_j^{\alpha}$) and
+$g'=\alpha f_\alpha$. \qed
+
+%======================================================================
+\section{\texorpdfstring{Proof of Theorem~\ref{thm:mono}}{Proof of Theorem}}
+%======================================================================
+
+Let $\varphi\in(0,\pi/6)$. By Lemma~\ref{lem:roots} the $y_j$ are distinct points of
+$(0,\frac23)$, and $g'\in C^2(0,\frac23)$. By Theorem~\ref{thm:identity} and
+Lemma~\ref{lem:mvt} with $n=2$, there is $\xi\in(0,\frac23)$ with
+\[
+-\frac{S_g'(\varphi)}{\sin 6\varphi}=\frac1{18}\,g'[y_1,y_2,y_3]=\frac{g'''(\xi)}{36}.
+\]
+As $\sin6\varphi>0$, $S_g'$ has the sign of $-g'''$ on $(0,\pi/6)$. Since $S_g$ is
+continuous on $[0,\pi/6]$ (because $g\in C[0,\frac23]$ and the $y_j$ stay in
+$[0,\frac23]$), it is strictly monotone on the closed interval.
+
+For $g(t)=t^\alpha$, $g'''(t)=\alpha(\alpha-1)(\alpha-2)t^{\alpha-3}$, whose sign for
+$\alpha>0$ is that of $(\alpha-1)(\alpha-2)$; for $\alpha\in\{1,2\}$,
+$M_1=\sum y_j=1$ and $M_2=\sum y_j^2=1-2\cdot\frac14=\frac12$ are constant. The values
+$M_\alpha(0)=(\frac23)^\alpha+2(\frac16)^\alpha=3^{-\alpha}(2^\alpha+2^{1-\alpha})$ and
+$M_\alpha(\frac\pi6)=2(\frac12)^\alpha=2^{1-\alpha}$ follow from Lemma~\ref{lem:roots}.
+By the symmetries of $M_\alpha$ these are its global extreme values, and by strict
+monotonicity they are attained only at $\varphi\equiv0$ or $\varphi\equiv\pi/6$
+modulo $\pi/3$, i.e.\ on the stated orbits. \qed
+
+%======================================================================
+\section{\texorpdfstring{Proof of Theorem~\ref{thm:H}}{Proof of Theorem}}
+%======================================================================
+
+Fix $\alpha>2$, so $f=f_\alpha\in C^1[0,\infty)$ with $f'(t)=(\alpha-1)t^{\alpha-2}$
+continuous on $[0,\infty)$ and strictly increasing; $f$ is smooth on $(0,\infty)$. Put
+\[
+G(\varphi):=f[y_1(\varphi),y_2(\varphi),y_3(\varphi)]\qquad(0<\varphi<\pi/6),
+\]
+so that $\Phi_\alpha=\frac{\alpha}{18}G$ by Theorem~\ref{thm:identity}.
+
+\subsection*{\texorpdfstring{Step 1: continuous extension to $[0,\pi/6]$}{Step 1: continuous extension}}
+For $s,t\ge0$ let
+\[
+\sigma(s,t):=\int_0^1 f'\bigl(s+\tau(t-s)\bigr)\dd\tau ,
+\]
+which is continuous on $[0,\infty)^2$, equals $\frac{f(t)-f(s)}{t-s}$ for $s\ne t$, and
+equals $f'(s)$ for $s=t$. For three distinct nodes,
+$f[a,b,c]=\frac{\sigma(b,c)-\sigma(a,b)}{c-a}$. Using the ordering
+$y_3<y_2<y_1$ from Lemma~\ref{lem:roots}, define for $\varphi\in[0,\pi/6]$
+\[
+\widehat G(\varphi):=\frac{\sigma(y_2,y_1)-\sigma(y_3,y_2)}{y_1-y_3}.
+\]
+By Lemma~\ref{lem:roots}, $y_1-y_3\ge\frac12-\frac16=\frac13$ on $[0,\pi/6]$, so
+$\widehat G$ is continuous on $[0,\pi/6]$ and coincides with $G$ on $(0,\pi/6)$. At the
+endpoints, by Lemma~\ref{lem:roots},
+\[
+\widehat G(0)=\frac{\sigma(\frac16,\frac23)-f'(\frac16)}{1/2},\qquad
+\widehat G(\tfrac\pi6)=\frac{f'(\frac12)-\sigma(0,\frac12)}{1/2}.
+\]
+Both are positive: $\sigma(s,t)$ is the mean of the strictly increasing function $f'$
+over the segment $[s,t]$, so $\sigma(\frac16,\frac23)>f'(\frac16)$ and
+$\sigma(0,\frac12)<f'(\frac12)$. Evaluating,
+$\sigma(\frac16,\frac23)=2\bigl((\frac23)^{\alpha-1}-(\frac16)^{\alpha-1}\bigr)$,
+$f'(\frac16)=(\alpha-1)6^{2-\alpha}$, $f'(\frac12)=(\alpha-1)2^{2-\alpha}$ and
+$\sigma(0,\frac12)=2^{2-\alpha}$, which after multiplication by $\frac\alpha{18}$ give the
+formulas for $\Phi_\alpha(0)$ and $\Phi_\alpha(\frac\pi6)$ in Theorem~\ref{thm:H}.
+
+\subsection*{\texorpdfstring{Step 2: positivity, and hypothesis \eqref{eq:H}}{Step 2: positivity and hypothesis (H)}}
+For $\varphi\in(0,\pi/6)$, Lemma~\ref{lem:mvt} with $n=2$ gives
+$G(\varphi)=\frac12 f''(\xi)$ for some $\xi>0$, and
+$f''(t)=(\alpha-1)(\alpha-2)t^{\alpha-3}>0$. Together with Step~1, $\widehat G$ is
+continuous and strictly positive on the compact interval $[0,\pi/6]$, hence has a
+positive minimum. Therefore $C(\alpha):=\frac{\alpha}{18}\min\widehat G>0$
+satisfies~\eqref{eq:H}.
+
+\subsection*{\texorpdfstring{Step 3: monotonicity of $\Phi_\alpha$}{Step 3: monotonicity}}
+For $e\in(0,\frac1{54})$ let $Y(e)$ be the root set of $P_e=h-e$; by
+Lemmas~\ref{lem:cubic} and~\ref{lem:roots} it consists of three distinct points of
+$(0,\frac23)$, and $G=f[Y(e(\varphi))]$.
+
+\begin{lemma}\label{lem:six}
+Let $0<e<e'<\frac1{54}$. Then $Y(e)\cap Y(e')=\varnothing$, and
+\[
+f[Y(e')]-f[Y(e)]=(e'-e)\,f[Y(e)\cup Y(e')],
+\]
+where the right-hand side is a divided difference at six distinct nodes in
+$(0,\frac23)$.
+\end{lemma}
+
+\begin{proof}
+A common root would satisfy $h(t)=e$ and $h(t)=e'$. Let $A=h-e$ and $B=h-e'$, so
+$A-B=e'-e$, and let $W=AB=\prod_{z\in Y\cup Y'}(t-z)$ with $Y=Y(e)$, $Y'=Y(e')$. For
+$z\in Y$ we have $W'(z)=A'(z)B(z)=A'(z)(e-e')$, and for $z\in Y'$,
+$W'(z)=A(z)B'(z)=(e'-e)B'(z)$. By Lemma~\ref{lem:lagrange},
+\[
+f[Y\cup Y']=\sum_{z\in Y}\frac{f(z)}{(e-e')A'(z)}+\sum_{z\in Y'}\frac{f(z)}{(e'-e)B'(z)}
+=\frac{f[Y']-f[Y]}{e'-e}. \qedhere
+\]
+\end{proof}
+
+By Lemma~\ref{lem:mvt} with $n=5$, $f[Y(e)\cup Y(e')]=f^{(5)}(\xi)/120$ for some
+$\xi\in(0,\frac23)$, where
+\[
+f^{(5)}(t)=(\alpha-1)(\alpha-2)(\alpha-3)(\alpha-4)(\alpha-5)\,t^{\alpha-6}.
+\]
+Thus, for $\alpha>2$, the map $e\mapsto f[Y(e)]$ is strictly increasing on
+$(0,\frac1{54})$ if $s:=(\alpha-3)(\alpha-4)(\alpha-5)>0$, strictly decreasing if $s<0$,
+and constant if $s=0$. Since $e(\varphi)$ is strictly decreasing on $[0,\pi/6]$, $G$
+(hence $\Phi_\alpha$) is strictly decreasing on $(0,\pi/6)$ if $s>0$, strictly
+increasing if $s<0$, and constant if $s=0$; by Step~1 the same holds on $[0,\pi/6]$ for
+the continuous extension. The minimum of $\Phi_\alpha$ is therefore attained at
+$\varphi=\pi/6$ if $s>0$ and at $\varphi=0$ if $s<0$, which gives the formula for $C(\alpha)$;
+it is attained, so it cannot be improved.
+
+\subsection*{Step 4: the constant cases}
+If $\alpha=m+2$ with $m\in\{1,2,3\}$, then $f(t)=t^{m+1}$ and $f[y_1,y_2,y_3]$ is the
+complete homogeneous symmetric polynomial of degree $m-1$ in the $y_j$. Using
+$\sum y_j=1$ and $\sum_{i<j}y_iy_j=\frac14$: for $\alpha=3$ it is $1$; for $\alpha=4$ it is
+$\sum y_j=1$; for $\alpha=5$ it is $\sum_{i\le j}y_iy_j=\sum y_j^2+\sum_{i<j}y_iy_j
+=\frac12+\frac14=\frac34$. Hence $\Phi_3=\frac{3}{18}=\frac16$,
+$\Phi_4=\frac4{18}=\frac29$, $\Phi_5=\frac5{18}\cdot\frac34=\frac5{24}$.
+
+\subsection*{\texorpdfstring{Step 5: behaviour as $\alpha\to2^+$}{Step 5: behaviour near alpha = 2}}
+For $2<\alpha<3$ the minimum is $\Phi_\alpha(0)$. The bracket in the formula for
+$\Phi_\alpha(0)$ vanishes at $\alpha=2$ and its derivative there is
+$2\cdot\frac23\ln\frac23-1+\frac43\ln6=\frac83\ln2-1$. Hence
+$C(\alpha)=\frac{2}{9}\bigl(\frac83\ln2-1\bigr)(\alpha-2)+O\bigl((\alpha-2)^2\bigr)$. \qed
+
+%======================================================================
+\section{Remarks}
+%======================================================================
+
+\begin{remark}
+The Fourier coefficients of $M_\alpha$ do not have a fixed sign for non-integer
+$\alpha>2$, which is why the approach of~\cite{HU} does not extend to that range. The
+relevant structure is instead the cubic $h(t)-e$ whose roots are the $x_j^2$: two of its
+coefficients are fixed and the third moves linearly in $\cos6\varphi$. Differentiating
+along this one-parameter family produces divided differences, whose sign is controlled
+by a single derivative.
+\end{remark}
+
+\begin{remark}
+The change of monotonicity of $M_\alpha$ at $\alpha=1$ and $\alpha=2$, called remarkable
+in~\cite{HU}, is the change of sign of $g'''$ for $g(t)=t^\alpha$. In the same way, the
+point where the sharp constant $C(\alpha)$ is attained switches exactly at the sign
+changes $\alpha=3,4,5$ of $f_\alpha^{(5)}$.
+\end{remark}
+
+\begin{remark}
+The argument is specific to $d=3$: there the unit circle of $L_3$ is a curve on which the
+first two power sums of the $y_j$ are fixed, so the $y_j$ are the roots of a cubic with
+one moving coefficient. For $d\ge4$ see~\cite{Z}.
+\end{remark}
+
+%======================================================================
+\section{Formal verification}\label{sec:lean}
+%======================================================================
+
+\begin{sloppypar}
+The main results have been formalized in Lean~4 with the Mathlib library, without any
+unproved steps (\texttt{sorry}); the only axioms used are the standard ones
+(\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}). The formalization
+covers Theorem~\ref{thm:identity} for $M_\alpha$, the three monotonicity statements and
+the endpoint values of Theorem~\ref{thm:mono}, and all of Theorem~\ref{thm:H} except the
+asymptotics as $\alpha\to2^+$: hypothesis~\eqref{eq:H}, the limits of $\Phi_\alpha$ at
+both endpoints with their closed forms, the direction of monotonicity, the constant cases
+$\alpha=3,4,5$, and the sharpness of $C(\alpha)$, stated as $C(\alpha)$ being the greatest
+lower bound of $\Phi_\alpha$ on $(0,\pi/6)$. The general-$g$ versions of
+Theorems~\ref{thm:identity} and~\ref{thm:mono}, and the reduction from $[0,\pi/6]$ to the
+full circle, are not formalized. The formal proof follows Sections~3--7; the endpoint
+limits in Step~1 are obtained there by squeezing slopes between values of $f'$ rather
+than through the integral $\sigma$.
+\end{sloppypar}
+
+%======================================================================
+\section{Numerical check}\label{sec:numerics}
+%======================================================================
+
+A script \texttt{verify.py} accompanying this note checks the statements above in
+40-digit arithmetic (mpmath). The identity of Theorem~\ref{thm:identity}, compared with
+numerical differentiation of $M_\alpha$ for nine values of $\alpha$ between $0.7$ and
+$25.5$ and twelve values of $\varphi$ each, holds with relative error at most
+$2.4\times10^{-39}$. The location and value of $\min\Phi_\alpha$ on a $400$-point grid
+agree with Theorem~\ref{thm:H} for all eleven tested values of $\alpha$, including
+$\alpha=4.5$, where the minimum sits at $\varphi=0$. The quotient
+$C(2+\varepsilon)/\varepsilon$ at $\varepsilon=10^{-7}$ equals $0.18853167$, against the
+predicted limit $\frac29(\frac83\ln2-1)=0.18853166$.
+
+\begin{thebibliography}{9}
+
+\bibitem{dB}
+C.~de~Boor, \emph{Divided differences}, Surveys in Approximation Theory \textbf{1}
+(2005), 46--69.
+
+\bibitem{HU}
+A.~S.~Holevo and A.~V.~Utkin, \emph{A conjecture on a tight norm inequality in the
+finite-dimensional $l_p$}, arXiv:2603.24017 (2026).
+
+\bibitem{Z}
+H.~Zhang, \emph{Proof of the Holevo--Utkin conjecture on sharp $\ell_p$ norms for
+zero-sum vectors}, arXiv:2605.05243 (2026).
+
+\end{thebibliography}
+
+\end{document}
