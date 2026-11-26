@@ -1,0 +1,9 @@
+name = "HolevoUtkin"
+defaultTargets = ["HolevoUtkin"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+
+[[lean_lib]]
+name = "HolevoUtkin"
