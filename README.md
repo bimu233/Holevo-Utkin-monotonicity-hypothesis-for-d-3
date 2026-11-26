@@ -19,7 +19,7 @@ and study $`M_\alpha(\varphi)=\sum_{j} |x_j(\varphi)|^{2\alpha}`$. On numerical 
 ## Results
 
 - **(H) is true for every $`\alpha>2`$, with the sharp constant in closed form.** The minimum of $`-M_\alpha'/\sin 6\varphi`$ is attained at $`\varphi=0`$ when $`(\alpha-3)(\alpha-4)(\alpha-5)<0`$, and at $`\varphi=\pi/6`$ when this product is positive. In the latter case $`C(\alpha)=\alpha(\alpha-2)\,2^{3-\alpha}/18`$. For $`\alpha=3,4,5`$ the quotient is constant, equal to $`\tfrac{1}{6},\tfrac{2}{9},\tfrac{5}{24}`$.
-- **Monotonicity for every exponent.** $`M_\alpha`$ is strictly decreasing on $`[0,\pi/6]`$ for $`\alpha\in(0,1)\cup(2,\infty)`$ and strictly increasing for $`\alpha\in(1,2)`$. This gives a one-argument proof of the $`d=3`$ case of the Holevo–Utkin inequality for all $`\alpha>0`$.
+- **Monotonicity for every exponent.** $`M_\alpha`$ is strictly decreasing on $`[0,\pi/6]`$ for $`\alpha\in(0,1)\cup(2,\infty)`$ and strictly increasing for $`\alpha\in(1,2)`$. This monotonicity was obtained earlier by Zhang ([arXiv:2605.05243](https://arxiv.org/abs/2605.05243), Prop. 12(1)) by a different method; our proof works for every $`g`$ with $`g'''`$ of constant sign in place of $`t^\alpha`$. The new results here are the identity below and the quantitative statement (H) with its sharp constant.
 
 ## Key idea
 

@@ -29,8 +29,8 @@ form. The key observation is that $-M_\alpha'(\varphi)/\sin 6\varphi$ equals
 $\tfrac{\alpha}{18}$ times a second-order divided difference of $t\mapsto t^{\alpha-1}$
 at the three numbers $x_j(\varphi)^2$, which are the roots of a cubic with a single
 moving coefficient. The same argument shows that $\sum_j g(x_j(\varphi)^2)$ is monotone
-on $[0,\pi/6]$ whenever $g'''$ has constant sign. This gives a unified proof of the
-three-dimensional case of the Holevo--Utkin inequality for every exponent.
+on $[0,\pi/6]$ whenever $g'''$ has constant sign; for $g(t)=t^\alpha$ this monotonicity
+was obtained earlier by Zhang by a different method.
 \end{abstract}
 
 \maketitle
@@ -47,7 +47,7 @@ sharp inequalities
 \end{align*}
 for $x\in L_d$,
 with an explicit constant $M(d,\alpha)$. They proved the case $d=3$, and
-Zhang~\cite{Z} proved the remaining cases $d\ge4$.
+Zhang~\cite{Z} proved the remaining cases $d\ge4$ and gave a second proof for $d=3$.
 
 For $d=3$ the unit vectors of $L_3$ are
 \begin{equation}\label{eq:x}
@@ -73,15 +73,19 @@ following statement as a hypothesis supported by a numerical study~\cite[\S2]{HU
 where at $\varphi\in\{0,\pi/6\}$ the left-hand side is understood as a limit.
 Hypothesis~\eqref{eq:H} implies that $M_\alpha$ is decreasing on $[0,\pi/6]$. They then
 prove the $d=3$ inequality for $\alpha>2$ by a different argument, and \eqref{eq:H}
-itself is left open. To our knowledge it has not been proved since; the paper~\cite{Z}
-deals with $d\ge4$.
+itself is left open. To our knowledge it has not been proved since. Zhang~\cite[Prop.~12(1)]{Z}
+shows, by a convexity argument in the exponent applied to a one-parameter reduction, that
+$M_\alpha$ is monotone on $[0,\pi/6]$ for every $\alpha$; but monotonicity alone does not
+give~\eqref{eq:H}, because $M_\alpha'$ vanishes at both endpoints, and neither the
+quantitative bound nor its constant is addressed there.
 
 In this note we prove \eqref{eq:H} with the best possible constant
 (Theorem~\ref{thm:H}). The proof rests on an exact identity (Theorem~\ref{thm:identity})
 expressing $-M_\alpha'/\sin6\varphi$ as a divided difference. As a by-product we obtain
-the monotonicity of $M_\alpha$ on $[0,\pi/6]$ for every $\alpha>0$
-(Theorem~\ref{thm:mono}), which recovers the three-dimensional case of the
-Holevo--Utkin conjecture in a single argument.
+the monotonicity of $\sum_j g(x_j^2)$ on $[0,\pi/6]$ whenever $g'''$ has constant sign
+(Theorem~\ref{thm:mono}). For $g(t)=t^\alpha$ this is the monotonicity statement
+of~\cite[Prop.~12(1)]{Z}; our proof is different and does not use the specific form
+of $g$.
 
 %======================================================================
 \section{Statement of results}
@@ -436,10 +440,26 @@ point where the sharp constant $C(\alpha)$ is attained switches exactly at the s
 changes $\alpha=3,4,5$ of $f_\alpha^{(5)}$.
 \end{remark}
 
-\begin{remark}
-The argument is specific to $d=3$: there the unit circle of $L_3$ is a curve on which the
-first two power sums of the $y_j$ are fixed, so the $y_j$ are the roots of a cubic with
-one moving coefficient. For $d\ge4$ see~\cite{Z}.
+\begin{remark}[Higher dimensions]
+For $d\ge4$, Zhang~\cite{Z} reduces the extremal problem, by Lagrange multipliers and
+second-variation arguments, to the one-parameter family
+\[
+x=(a,-b,-c,\dots,-c)\qquad\text{with multiplicities }(1,1,d-2).
+\]
+Part of the present argument survives on this family. If $u_1,u_2,u_3$ move with multiplicities $m_1,m_2,m_3$ subject to
+$\sum m_iu_i=0$ and $\sum m_iu_i^2=1$, a tangent vector is $v_i=(u_j-u_k)/m_i$ for
+$(i,j,k)$ cyclic. Hence the multiplicities cancel:
+\[
+\frac{\mathrm d}{\mathrm d\theta}\sum_i m_i\,G(u_i)=\sum_{\mathrm{cyc}}G'(u_1)(u_2-u_3),
+\]
+which is, up to the Vandermonde factor, the divided difference $G'[a,-b,-c]$, exactly as
+for $d=3$. However, the three nodes have mixed signs, so the sign of this divided
+difference is not controlled by a single derivative of $G(t)=|t|^{2\alpha}$. For $d=3$ this
+was repaired by passing to $y=x^2$, which works because $\sum_j x_j^4=\frac12$ on the whole
+circle; for $d\ge4$, $\sum m_iu_i^4$ is not constant along the family. This failure is
+genuine: for instance, for $d=4$ and $2\alpha=2.5$ the function $\sum_i m_iG(u_i)$ first
+decreases and then increases along the family (compare~\cite[Lemma~11(2)]{Z}; we checked
+this numerically), so no direct analogue of~\eqref{eq:H} holds there.
 \end{remark}
 
 %======================================================================
